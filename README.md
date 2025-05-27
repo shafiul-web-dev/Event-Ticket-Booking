@@ -10,7 +10,7 @@ This is a **full-stack Event Ticket Booking API** built with **ASP.NET Core & En
 - **Authentication:** None (Can be integrated with JWT)  
 
 ##  Features  
--Full **CRUD operations** for events, users & bookings  
+- Full **CRUD operations** for events, users & bookings  
 - **Sorting & Filtering** by event date & category  
 - **Pagination** for handling large datasets  
 - **Validation & Business Rules** – Prevents duplicate bookings  
