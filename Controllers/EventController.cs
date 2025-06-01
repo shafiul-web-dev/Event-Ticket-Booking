@@ -31,13 +31,13 @@ namespace Event_Ticket_Booking.Controllers
 				.Include(b => b.User)
 				.AsQueryable();
 
-			// 🔹 Filtering by Event Category
+			
 			if (!string.IsNullOrEmpty(eventCategory))
 			{
 				query = query.Where(b => b.TicketTier.Event.Category == eventCategory);
 			}
 
-			// 🔹 Sorting Logic
+			
 			query = sortBy switch
 			{
 				"eventName" => sortDirection == "asc" ? query.OrderBy(b => b.TicketTier.Event.Name) : query.OrderByDescending(b => b.TicketTier.Event.Name),
@@ -45,7 +45,7 @@ namespace Event_Ticket_Booking.Controllers
 				_ => query
 			};
 
-			// 🔹 Pagination
+			
 			var totalRecords = await query.CountAsync();
 			var bookings = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize)
 				.Select(b => new BookingDto
@@ -102,7 +102,7 @@ namespace Event_Ticket_Booking.Controllers
 				return BadRequest(new { message = "Not enough tickets available for this tier." });
 			}
 
-			// Deduct booked tickets
+			
 			ticketTier.AvailableTickets -= bookingDto.TicketQuantity;
 
 			var booking = new Booking
